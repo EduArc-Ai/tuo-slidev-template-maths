@@ -1,8 +1,8 @@
 # 拓课堂 Slidev 模板 | TuoEdu Slidev Template
 
 [![Slidev](https://img.shields.io/badge/Powered%20by-Slidev-0AC5BB)](https://sli.dev/)
-[![Made for Math](https://img.shields.io/badge/Made%20for-Mathematics-blue)](https://github.com/AFFFPupu/TuoEdu-STEP2-Lesson1)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Enabled-brightgreen)](https://github.com/AFFFPupu/TuoEdu-STEP2-Lesson1)
+[![Made for Math](https://img.shields.io/badge/Made%20for-Mathematics-blue)](https://github.com/AFFFPupu/tuo-slidev-template-maths)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Enabled-brightgreen)](https://afffpupu.github.io/tuo-slidev-template-maths/)
 
 <div align="center">
   <img src="./public/logo/company-logo.png" width="300" alt="拓课堂 Logo">
