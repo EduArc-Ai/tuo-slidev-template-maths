@@ -1,0 +1,57 @@
+/* Watermark styling for 拓课堂 (TuoEdu) slides */
+.slidev-layout {
+  position: relative;
+}
+
+/* Text watermark - commented out in favor of image watermark
+.slidev-layout::before {
+  content: '拓课堂';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 120px;
+  color: rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
+  z-index: -1;
+  pointer-events: none;
+  font-weight: bold;
+}
+*/
+
+/* Image-based watermark - only applied when watermarkEnabled is true */
+html[data-watermark-enabled="true"] .slidev-layout::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background-image: url('/logo/company-logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.05;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Alternative image-based watermark (uncomment and adjust as needed)
+.slidev-layout::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background-image: url('/logo/company-logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.05;
+  z-index: -1;
+  pointer-events: none;
+}
+*/ 

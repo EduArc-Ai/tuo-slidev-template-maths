@@ -1,0 +1,134 @@
+/* Base styles for educational components */
+.edu-block {
+  margin: 0.3rem 0;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  background: var(--edu-block-bg, #f8f9fa);
+  border-left: 4px solid var(--edu-block-accent, #4a5568);
+}
+
+.dark .edu-block {
+  background: var(--edu-block-bg-dark, #1a1a1a);
+  border-left-color: var(--edu-block-accent-dark, #718096);
+}
+
+.edu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--edu-header-border, rgba(0,0,0,0.1));
+}
+
+.dark .edu-header {
+  border-bottom-color: var(--edu-header-border-dark, rgba(255,255,255,0.1));
+}
+
+.edu-title {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--edu-title-color, #2d3748);
+}
+
+/* Definition specific styles */
+.definition-block {
+  padding-top: 0.5rem;
+}
+
+.definition-block .edu-header {
+  margin-bottom: 0.3rem;
+}
+
+.edu-meta {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.edu-tag {
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  background: var(--edu-tag-bg, rgba(0,0,0,0.05));
+  color: var(--edu-tag-color, #4a5568);
+}
+
+.dark .edu-tag {
+  background: var(--edu-tag-bg-dark, rgba(255,255,255,0.1));
+  color: var(--edu-tag-color-dark, #e2e8f0);
+}
+
+.edu-content {
+  line-height: 1.5;
+  margin-bottom: 0.2rem;
+}
+
+/* Math content styling */
+.math-content {
+  width: 100%;
+}
+
+.math-content :deep(.MathJax) {
+  margin: 0 0.15em;
+  vertical-align: middle;
+}
+
+.math-content :deep(.MathJax-Display) {
+  margin: 0.75em 0;
+}
+
+/* Component-specific colors */
+.question-block {
+  --edu-block-accent: #3b82f6;
+  --edu-block-accent-dark: #60a5fa;
+}
+
+.answer-block {
+  --edu-block-accent: #10b981;
+  --edu-block-accent-dark: #34d399;
+}
+
+.example-block {
+  --edu-block-accent: #8b5cf6;
+  --edu-block-accent-dark: #a78bfa;
+}
+
+.definition-block {
+  --edu-block-accent: #f59e0b;
+  --edu-block-accent-dark: #fbbf24;
+}
+
+.theorem-block {
+  --edu-block-accent: #ef4444;
+  --edu-block-accent-dark: #f87171;
+}
+
+.proof-block {
+  --edu-block-accent: #6366f1;
+  --edu-block-accent-dark: #818cf8;
+}
+
+.note-block {
+  --edu-block-accent: #ec4899;
+  --edu-block-accent-dark: #f472b6;
+}
+
+.exercise-block {
+  --edu-block-accent: #14b8a6;
+  --edu-block-accent-dark: #2dd4bf;
+}
+
+/* Animations */
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.15s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}

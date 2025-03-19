@@ -1,0 +1,132 @@
+/* Chinese font settings */
+:root {
+  /* Primary fonts for Chinese content */
+  --chinese-fonts: "Noto Sans SC", "Source Han Sans CN", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --chinese-heading-fonts: "Noto Serif SC", "Source Han Serif CN", "STZhongsong", "SimSun", system-ui, serif;
+  
+  /* Primary fonts for English content */
+  --english-fonts: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --english-heading-fonts: "DM Sans", system-ui, -apple-system, serif;
+  
+  /* Monospace font for code and math */
+  --monospace-fonts: "IBM Plex Mono", Consolas, "Courier New", monospace;
+  
+  /* Font weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+}
+
+/* Apply base font settings */
+.slidev-layout {
+  font-family: var(--chinese-fonts);
+  font-weight: var(--font-normal);
+  letter-spacing: 0;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings with education-optimized styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--chinese-heading-fonts);
+  font-weight: var(--font-bold);
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+/* Chinese title sizes with better proportions */
+h1 { 
+  font-size: 2.2em !important; 
+  margin-bottom: 0.5em;
+}
+h2 { 
+  font-size: 2em !important; 
+  margin-bottom: 0.4em;
+}
+h3 { 
+  font-size: 1.6em !important; 
+  margin-bottom: 0.3em;
+}
+h4 { 
+  font-size: 1.3em !important; 
+  margin-bottom: 0.2em;
+}
+
+/* Chinese-specific heading adjustments */
+h1[lang="zh"], h1[lang="zh-CN"],
+h2[lang="zh"], h2[lang="zh-CN"],
+h3[lang="zh"], h3[lang="zh-CN"],
+h4[lang="zh"], h4[lang="zh-CN"] {
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+/* Educational components with enhanced styles */
+.edu-block {
+  font-family: var(--chinese-fonts);
+  font-weight: var(--font-normal);
+  line-height: 1.6;
+}
+
+.edu-block .edu-title {
+  font-family: var(--chinese-heading-fonts);
+  font-weight: var(--font-bold);
+  letter-spacing: -0.01em;
+  font-size: 1.4em;
+}
+
+/* English text styling */
+.english-text {
+  font-family: var(--english-fonts);
+  font-weight: var(--font-normal);
+}
+
+.english-heading {
+  font-family: var(--english-heading-fonts);
+  font-weight: var(--font-bold);
+}
+
+/* Math and code content */
+.math-content,
+code,
+pre {
+  font-family: var(--monospace-fonts);
+  font-feature-settings: "liga" 0;
+  font-size: 0.95em;
+}
+
+/* Specific Chinese text enhancements */
+[lang="zh"], 
+[lang="zh-CN"] {
+  font-weight: var(--font-normal);
+  letter-spacing: 0.02em;
+}
+
+/* Math content */
+.math-content {
+  font-size: 1.05em;
+  line-height: 1.6;
+}
+
+/* Better spacing for Chinese paragraphs */
+p {
+  line-height: 1.7;
+  margin: 0.8em 0;
+}
+
+/* Dark mode adjustments */
+.dark {
+  --text-opacity: 0.92;
+  font-weight: var(--font-normal);
+}
+
+/* Chinese subtitle specific styles */
+.chinese-subtitle {
+  font-family: var(--chinese-fonts);
+  font-weight: var(--font-medium);
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+} 
