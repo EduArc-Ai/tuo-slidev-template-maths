@@ -127,8 +127,7 @@ section: 'Limits'
 ## Fundamental Theorems and Properties
 
 ---
-section: Limits
----
+
 
 # Understanding Limits
 
