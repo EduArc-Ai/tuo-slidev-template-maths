@@ -1,42 +1,20 @@
 <template>
   <div class="example-block">
-    <!-- Floating Label -->
-    <div class="floating-label" aria-label="Example type">
-      <span class="index-badge" v-if="index">{{ index }}</span>
-      Example
+    <!-- Simple Header -->
+    <div class="example-header">
+      <div class="header-left">
+        <span class="icon">✏️</span>
+        <span class="title">Example{{ index ? ` ${index}` : '' }}</span>
+      </div>
+      <div class="header-tags" v-if="topic || difficulty">
+        <span v-if="topic" class="tag">{{ topic }}</span>
+        <span v-if="difficulty" class="tag" :class="`difficulty-${difficulty.toLowerCase()}`">{{ difficulty }}</span>
+      </div>
     </div>
 
-    <!-- Main Container -->
-    <div class="example-container">
-      <div class="accent-border" aria-hidden="true"></div>
-      <div class="content-wrapper">
-        <!-- Header Section -->
-        <header class="example-header" v-if="topic || difficulty">
-          <div class="tags">
-            <span v-if="topic" class="tag topic" :title="`Topic: ${topic}`">
-              <span class="dot" aria-hidden="true"></span>
-              {{ topic }}
-            </span>
-            <span
-              v-if="difficulty"
-              class="tag difficulty"
-              :title="`Difficulty: ${difficulty}`"
-            >
-              <span class="dot" aria-hidden="true"></span>
-              {{ difficulty }}
-            </span>
-          </div>
-        </header>
-
-        <!-- Content Section -->
-        <div
-          class="example-content"
-          role="region"
-          :aria-label="'Example content'"
-        >
-          <slot />
-        </div>
-      </div>
+    <!-- Content Section -->
+    <div class="example-content" role="region" aria-label="Example content">
+      <slot />
     </div>
   </div>
 </template>
@@ -55,131 +33,87 @@ defineProps<ExampleProps>();
 </script>
 
 <style scoped>
-/* Layout & Positioning */
+/* Base Example Block */
 .example-block {
-  position: relative;
-  margin: 1rem 0.5rem;
-}
-
-.example-container {
-  position: relative;
-  overflow: hidden;
-  background: white;
+  margin: 1.5rem 0;
   border-radius: 0.5rem;
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(13, 148, 136, 0.1);
+  background: white;
+  border: 1px solid #10b981;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.content-wrapper {
-  padding: 0.75rem 0.75rem 0.75rem;
-}
-
+/* Header Section */
 .example-header {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 0.5rem;
-  min-height: 2rem;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: #f0fdf4;
+  border-bottom: 1px solid #d1fae5;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
 }
 
-/* Floating Label Styles */
-.floating-label {
-  position: absolute;
-  top: -0.6rem;
-  left: 1rem;
-  z-index: 1;
-  padding: 0.15rem 0.6rem;
-  font-size: 0.75rem;
+.icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #059669;
   text-transform: uppercase;
-  background: #0d9488;
-  color: white;
-  border-radius: 0.3rem;
-  box-shadow: 0 2px 4px rgba(13, 148, 136, 0.2);
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+  letter-spacing: 0.025em;
 }
 
-.index-badge {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 0.1rem 0.3rem;
-  border-radius: 0.2rem;
-  font-size: 0.75rem;
-  min-width: 1.2rem;
-  text-align: center;
-}
-
-/* Accent Border */
-.accent-border {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: linear-gradient(to bottom, #0d9488, #2dd4bf);
-}
-
-/* Tags Styles */
-.tags {
+/* Tags */
+.header-tags {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
 
 .tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  background: #fff;
-  border: 1px solid #0d9488;
-  color: #0d9488;
-  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  background: white;
+  border: 1px solid #d1fae5;
+  color: #059669;
+  border-radius: 9999px;
+  font-weight: 500;
 }
 
-.tag.topic {
-  border-color: #8b5cf6;
-  color: #8b5cf6;
+/* Difficulty-specific tag colors */
+.tag.difficulty-easy {
+  border-color: #86efac;
+  color: #16a34a;
 }
 
-.tag.difficulty[title*="Easy"] {
-  border-color: #10b981;
-  color: #10b981;
+.tag.difficulty-medium {
+  border-color: #fde68a;
+  color: #d97706;
 }
 
-.tag.difficulty[title*="Medium"] {
-  border-color: #f59e0b;
-  color: #f59e0b;
+.tag.difficulty-hard {
+  border-color: #fca5a5;
+  color: #dc2626;
 }
 
-.tag.difficulty[title*="Hard"] {
-  border-color: #ef4444;
-  color: #ef4444;
-}
-
-.dot {
-  width: 0.25rem;
-  height: 0.25rem;
-  border-radius: 50%;
-  background-color: currentColor;
-}
-
-/* Content Styles */
+/* Content Section */
 .example-content {
-  padding: 0.75rem;
-  background: rgba(13, 148, 136, 0.03);
-  border-radius: 0.3rem;
-  color: #1f2937;
+  padding: 1.25rem 1.5rem;
+  color: #374151;
+  line-height: 1.6;
 }
 
 /* Enhanced Math Content Styling */
 :deep(.example-content) {
-  color: inherit;
-
   /* Inline math */
   .katex {
     font-size: 1em;
@@ -193,48 +127,92 @@ defineProps<ExampleProps>();
   }
 
   /* Lists and paragraphs */
-  ul,
-  ol {
-    margin: 0.5em 0;
+  ul, ol {
+    margin: 0.75em 0;
     padding-left: 1.5em;
   }
 
   li {
-    margin: 0.25em 0;
+    margin: 0.5em 0;
   }
 
   p {
-    margin: 0.5em 0;
+    margin: 0.75em 0;
+  }
+
+  p:first-child {
+    margin-top: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
   }
 }
 
-/* Dark Mode Styles */
-.dark {
-  .example-container {
-    background: rgba(17, 24, 39, 0.8);
-    border-color: rgba(13, 148, 136, 0.2);
+/* Dark Mode */
+.dark .example-block {
+  background: #1f2937;
+  border-color: #10b981;
+}
+
+.dark .example-header {
+  background: #064e3b;
+  border-bottom-color: #065f46;
+}
+
+.dark .title {
+  color: #86efac;
+}
+
+.dark .tag {
+  background: #065f46;
+  border-color: #10b981;
+  color: #86efac;
+}
+
+.dark .tag.difficulty-easy {
+  border-color: #10b981;
+  color: #86efac;
+}
+
+.dark .tag.difficulty-medium {
+  border-color: #f59e0b;
+  color: #fde68a;
+}
+
+.dark .tag.difficulty-hard {
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+.dark .example-content {
+  color: #e5e7eb;
+}
+
+.dark :deep(.example-content) {
+  .katex {
+    color: #e5e7eb;
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .example-header {
+    padding: 0.5rem 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
-  .tag {
-    background: rgba(13, 148, 136, 0.1);
-    border-color: rgba(13, 148, 136, 0.2);
+  .icon {
+    font-size: 1rem;
   }
 
-  .tag.topic {
-    background: rgba(139, 92, 246, 0.1);
-    border-color: rgba(139, 92, 246, 0.2);
-    color: #a78bfa;
+  .title {
+    font-size: 0.8rem;
   }
 
   .example-content {
-    color: #e5e7eb;
-    background: rgba(13, 148, 136, 0.05);
-  }
-
-  :deep(.example-content) {
-    .katex {
-      color: #e5e7eb;
-    }
+    padding: 1rem;
   }
 }
 </style>

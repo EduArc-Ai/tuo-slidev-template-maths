@@ -404,15 +404,134 @@ $f^{\prime}(x)=\lim _{h \rightarrow 0} \frac{f(x+h)-f(x)}{h}$
 This is the formal definition of the derivative, derived from the concept of instantaneous rate of change.
 </Definition>
 
-<Note title="Key Interpretations">
+<Note type="tip">
 
-- **Rate of Change**: This limit represents the instantaneous rate of change of the function
-- **Geometric Meaning**: The slope of the tangent line at a point
-- **Physical Applications**: 
-  - Velocity (derivative of position) / Acceleration (derivative of velocity)
-  - Rate of growth/decay
+**Key Interpretations:**
+- **Rate of Change**: Instantaneous rate of change
+- **Geometric**: Slope of tangent line
+- **Physics**: Velocity, acceleration, growth rates
 
 </Note>
+
+---
+
+# Learning Objectives
+
+<LearningObjective>
+
+Understand the concept of derivatives as rates of change
+
+Master the first principle of differentiation using limits
+
+Apply differentiation rules to polynomial, trigonometric, and exponential functions
+
+Solve real-world problems involving rates of change and optimization
+
+Interpret derivatives geometrically as slopes of tangent lines
+
+</LearningObjective>
+
+---
+
+# Note Component Examples
+
+<Note type="tip" importance="low">
+
+This is a helpful tip! The new Note component automatically adjusts its appearance based on the type.
+
+</Note>
+
+<Note type="warning" importance="medium">
+
+Be careful when differentiating composite functions. Always remember to apply the chain rule: $(f \circ g)'(x) = f'(g(x)) \cdot g'(x)$
+
+</Note>
+
+<Note type="important" importance="high">
+
+Critical concept: The derivative exists at a point if and only if the left-hand limit equals the right-hand limit of the difference quotient.
+
+</Note>
+
+<Note>
+
+This is a regular note without any special type. It uses the default styling with the notepad emoji.
+
+</Note>
+
+---
+
+# Example and Answer Components
+
+<Example index="1" topic="Derivatives" difficulty="Medium">
+
+Find the derivative of $f(x) = 3x^2 + 2x - 1$ using the first principle.
+
+</Example>
+
+<Answer title="Step-by-step Solution">
+
+1. Apply the first principle: $f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$
+
+2. Substitute: $f'(x) = \lim_{h \to 0} \frac{3(x+h)^2 + 2(x+h) - 1 - (3x^2 + 2x - 1)}{h}$
+
+3. Expand: $f'(x) = \lim_{h \to 0} \frac{3x^2 + 6xh + 3h^2 + 2x + 2h - 1 - 3x^2 - 2x + 1}{h}$
+
+4. Simplify: $f'(x) = \lim_{h \to 0} \frac{6xh + 3h^2 + 2h}{h} = \lim_{h \to 0} (6x + 3h + 2)$
+
+5. Therefore: $f'(x) = 6x + 2$
+
+</Answer>
+
+---
+
+# Class Question Demo
+
+<ClassQuestion title="Quick Check" time="2 min" difficulty="Medium" :showTimer="true" :showPause="true">
+
+What is the derivative of $f(x) = \sin(x^2)$ using the **chain rule**?
+
+*Think about which function is inside and which is outside...*
+
+</ClassQuestion>
+
+---
+
+# Remark Component Examples
+
+<Remark type="observation">
+
+Notice how the derivative represents the **instantaneous rate of change** - this is fundamentally different from average rate of change over an interval.
+
+</Remark>
+
+<Remark type="insight">
+
+The beauty of calculus lies in this transition from discrete to continuous - we're essentially finding the slope of a curve at a single point!
+
+</Remark>
+
+---
+
+# More Remark Examples
+
+<Remark type="caution">
+
+Be careful when applying L'Hôpital's rule - it only works for indeterminate forms like $\frac{0}{0}$ or $\frac{\infty}{\infty}$.
+
+</Remark>
+
+<Remark type="remember">
+
+Always check your domain when working with functions - division by zero and negative square roots can cause issues!
+
+</Remark>
+
+<Remark>
+
+This is a general remark without a specific type. It uses default styling.
+
+</Remark>
 
 ---
 
@@ -1016,11 +1135,176 @@ $$
 </Answer>
 
 ---
+
+# 🎯 Learning Objectives Component
+
+<LearningObjective>
+
+Understand how to use all educational components effectively
+
+Master the syntax and props for each component type
+
+Apply components to create engaging mathematics presentations
+
+Customize components for different teaching scenarios
+
+</LearningObjective>
+
+---
+
+# 📝 Note Components Showcase
+
+<Note type="tip">
+
+**Pro Tip**: Use different note types strategically - tips for helpful hints, warnings for common mistakes, and important for key concepts.
+
+</Note>
+
+<Note type="warning">
+
+**Watch Out**: Always leave blank lines before and after component content to ensure proper LaTeX rendering.
+
+</Note>
+
+<Note type="important">
+
+**Remember**: Each component is designed to enhance student understanding through visual hierarchy and clear organization.
+
+</Note>
+
+---
+
+# ✏️ Example Component Demo
+
+<Example index="1" topic="Component Usage" difficulty="Easy">
+
+How do you create a simple definition component?
+
+**Question**: Display the definition of a derivative using our component system.
+
+</Example>
+
+<Answer title="Component Implementation">
+
+
+
+The derivative of $f(x)$ at point $a$ is:
+$$f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}$$
+
+
+
+
+</Answer>
+
+---
+
+# 📖 Definition & Theorem Components
+
+<Definition title="Educational Component" subject="Template Design" topic="UI/UX">
+
+An **educational component** is a reusable Vue.js element designed to present mathematical content in a structured, visually appealing format that enhances learning comprehension.
+
+</Definition>
+
+<Theorem title="Component Consistency Theorem" author="TuoEdu Team" year="2024">
+
+If all educational components follow the same design principles, then the overall presentation maintains visual harmony and cognitive load is minimized for students.
+
+</Theorem>
+
+---
+
+# 🤔 Interactive Class Question
+
+<ClassQuestion title="Quick Assessment" time="1 min" difficulty="Easy" :showTimer="true" :showPause="true">
+
+Which component is specifically designed to highlight **common mistakes** in mathematical reasoning or problem-solving?
+
+A) <span style="color:#1976d2"><b>tip</b></span>  
+B) <span style="color:#ff9800"><b>warning</b></span>  
+C) <span style="color:#ffb300"><b>caution</b></span>  
+D) <span style="color:#ff9800"><b>Both B and C</b></span>
+
+
+*Reflect on how each component signals its purpose visually and contextually.*
+
+</ClassQuestion>
+
+---
+
+# 💬 Remark Components Collection
+
+<Remark type="observation">
+
+Students tend to learn better when content is **visually organized** - our components provide this structure automatically.
+
+</Remark>
+
+<Remark type="insight">
+
+The power of these components lies not just in their appearance, but in their ability to **signal content type** to students instantly.
+
+</Remark>
+
+---
+
+# 🎨 Component Design Philosophy
+
+<Remark type="remember">
+
+Each component uses **distinct colors and icons** to create immediate visual recognition - blue for tips, orange for warnings, green for examples, etc.
+
+</Remark>
+
+<Note type="tip">
+
+**Best Practice**: Don't use too many different components on a single slide - 1-3 components work best for maintaining focus.
+
+</Note>
+
+---
+
+# 📋 Complete Component Reference
+
+| Component | Purpose | Key Props | Color Theme |
+|-----------|---------|-----------|-------------|
+| `LearningObjective` | Learning goals | - | Orange gradient |
+| `Note` | Tips & warnings | `type` | Blue/Orange/Red |
+| `Example` | Math problems | `index`, `difficulty` | Green |
+| `Answer` | Solutions | `title` | Orange |
+| `Definition` | Concepts | `title`, `subject` | Yellow |
+| `Theorem` | Mathematical theorems | `author`, `year` | Blue |
+| `ClassQuestion` | Interactive questions | `time`, `difficulty` | Purple |
+| `Remark` | Observations | `type` | Gray/Blue/Cyan/Orange/Green |
+
+---
+
+# 🚀 Component Usage Tips
+
+<Note type="important">
+
+**Critical Formatting Rules**:
+- Always leave blank lines before and after component content
+- Use proper LaTeX syntax: `$inline$` and `$$display$$`
+- Keep content concise to avoid page overflow
+
+</Note>
+
+<Remark type="insight">
+
+These components transform a simple slide deck into an **interactive learning experience** - use them wisely to guide student attention and understanding.
+
+</Remark>
+
+---
 layout: center
 class: text-center
 ---
 
 # Thank you!
+
+🎓 Happy Teaching with TuoEdu Components! 
+拓课堂祝您教学愉快！
 
 
 

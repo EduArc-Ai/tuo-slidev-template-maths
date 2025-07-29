@@ -1,47 +1,21 @@
 <template>
-  <div class="note-block">
-    <!-- Floating Label -->
-    <div class="floating-label" aria-label="Note type">Note</div>
+  <div class="note-block" :class="noteClasses">
+    <!-- Simple Header -->
+    <div class="note-header">
+      <span class="icon">{{ noteIcon }}</span>
+      <span class="note-title">{{ noteTitle }}</span>
+    </div>
 
-    <!-- Main Container -->
-    <div class="note-container">
-      <div class="accent-border" aria-hidden="true"></div>
-      <div class="content-wrapper">
-        <!-- Header Section -->
-        <header class="note-header" v-if="type || importance">
-          <div class="header-right">
-            <span class="icon" aria-hidden="true">📝</span>
-            <div class="tags">
-              <span v-if="type" class="tag type" :title="`Type: ${type}`">
-                <span class="dot" aria-hidden="true"></span>
-                {{ type }}
-              </span>
-              <span
-                v-if="importance"
-                class="tag importance"
-                :title="`Importance: ${importance}`"
-              >
-                <span class="dot" aria-hidden="true"></span>
-                {{ importance }}
-              </span>
-            </div>
-          </div>
-        </header>
-
-        <!-- Content Section -->
-        <div
-          class="note-content"
-          role="region"
-          :aria-label="'Note content'"
-        >
-          <slot />
-        </div>
-      </div>
+    <!-- Content Section -->
+    <div class="note-content" role="region" :aria-label="noteTitle">
+      <slot />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
+
 interface NoteProps {
   /** The type of note (tip, warning, important, etc.) */
   type?: "tip" | "warning" | "important" | string;
@@ -49,120 +23,80 @@ interface NoteProps {
   importance?: "low" | "medium" | "high" | string;
 }
 
-defineProps<NoteProps>();
+const props = defineProps<NoteProps>();
+
+// Compute the appropriate icon based on type
+const noteIcon = computed(() => {
+  switch (props.type) {
+    case 'tip': return '💡';
+    case 'warning': return '⚠️';
+    case 'important': return '❗';
+    default: return '📝';
+  }
+});
+
+// Compute the title based on type
+const noteTitle = computed(() => {
+  switch (props.type) {
+    case 'tip': return 'Tip';
+    case 'warning': return 'Warning';
+    case 'important': return 'Important';
+    default: return 'Note';
+  }
+});
+
+// Compute classes for styling
+const noteClasses = computed(() => {
+  return {
+    [`note-${props.type}`]: props.type,
+    [`importance-${props.importance}`]: props.importance
+  };
+});
 </script>
 
 <style scoped>
-/* Layout & Positioning */
+/* Base Note Block */
 .note-block {
-  position: relative;
-  margin: 1.5rem 0.5rem 1rem;
-}
-
-.note-container {
-  position: relative;
-  overflow: hidden;
-  background: white;
+  margin: 1.5rem 0;
   border-radius: 0.5rem;
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  background: white;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.content-wrapper {
-  padding: 1.25rem 1rem 1rem;
-}
-
+/* Header Section */
 .note-header {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  margin-bottom: 1rem;
-}
-
-/* Floating Label Styles */
-.floating-label {
-  position: absolute;
-  top: -0.75rem;
-  left: 1rem;
-  z-index: 1;
-  padding: 0.2rem 0.8rem;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  background: #7c3aed;
-  color: white;
-  border-radius: 0.3rem;
-  box-shadow: 0 2px 4px rgba(124, 58, 237, 0.2);
-}
-
-/* Header Right Styles */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .icon {
   font-size: 1.25rem;
-  color: #7c3aed;
+  line-height: 1;
 }
 
-/* Container Styles */
-.note-container {
-  background: white;
-  border-radius: 0.5rem;
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.05);
-}
-
-.accent-border {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: linear-gradient(to bottom, #7c3aed, #a78bfa);
-}
-
-/* Tags Styles */
-.tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.25rem 0.75rem;
+.note-title {
   font-size: 0.875rem;
-  background: #fff;
-  border: 1px solid #7c3aed;
-  color: #7c3aed;
-  border-radius: 0.25rem;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
 }
 
-.dot {
-  width: 0.25rem;
-  height: 0.25rem;
-  border-radius: 50%;
-  background-color: currentColor;
-}
-
-/* Content Styles */
+/* Content Section */
 .note-content {
-  color: #1f2937;
-  padding: 0.5rem;
-  background: rgba(124, 58, 237, 0.03);
-  border-radius: 0.3rem;
+  padding: 1.25rem 1.5rem;
+  color: #374151;
+  line-height: 1.6;
 }
 
 /* Enhanced Math Content Styling */
 :deep(.note-content) {
-  color: inherit;
-
   /* Inline math */
   .katex {
     font-size: 1em;
@@ -176,68 +110,160 @@ defineProps<NoteProps>();
   }
 
   /* Lists and paragraphs */
-  ul,
-  ol {
-    margin: 0.5em 0;
+  ul, ol {
+    margin: 0.75em 0;
     padding-left: 1.5em;
   }
 
   li {
-    margin: 0.25em 0;
+    margin: 0.5em 0;
   }
 
   p {
-    margin: 0.5em 0;
+    margin: 0.75em 0;
+  }
+
+  p:first-child {
+    margin-top: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
   }
 }
 
-/* Type-specific colors */
-.tag.type[data-type="warning"] {
+/* Type-specific Styling */
+.note-tip {
+  border-color: #3b82f6;
+}
+
+.note-tip .note-header {
+  background: #eff6ff;
+  border-bottom-color: #dbeafe;
+}
+
+.note-tip .icon {
+  color: #2563eb;
+}
+
+.note-tip .note-title {
+  color: #1e40af;
+}
+
+.note-warning {
   border-color: #f59e0b;
-  color: #f59e0b;
 }
 
-.tag.type[data-type="important"] {
+.note-warning .note-header {
+  background: #fffbeb;
+  border-bottom-color: #fef3c7;
+}
+
+.note-warning .icon {
+  color: #d97706;
+}
+
+.note-warning .note-title {
+  color: #92400e;
+}
+
+.note-important {
   border-color: #ef4444;
-  color: #ef4444;
 }
 
-/* Importance-specific colors */
-.tag.importance[data-importance="high"] {
-  border-color: #ef4444;
-  color: #ef4444;
+.note-important .note-header {
+  background: #fef2f2;
+  border-bottom-color: #fee2e2;
 }
 
-.tag.importance[data-importance="medium"] {
-  border-color: #f59e0b;
-  color: #f59e0b;
+.note-important .icon {
+  color: #dc2626;
 }
 
-.tag.importance[data-importance="low"] {
-  border-color: #10b981;
-  color: #10b981;
+.note-important .note-title {
+  color: #991b1b;
 }
 
-/* Dark Mode Styles */
-.dark {
-  .note-container {
-    background: rgba(17, 24, 39, 0.8);
+/* Importance-specific adjustments */
+.importance-high {
+  border-width: 2px;
+}
+
+/* Dark Mode */
+.dark .note-block {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.dark .note-header {
+  background: #111827;
+  border-bottom-color: #374151;
+}
+
+.dark .note-title {
+  color: #e5e7eb;
+}
+
+.dark .note-content {
+  color: #e5e7eb;
+}
+
+/* Dark mode type variations */
+.dark.note-tip .note-header {
+  background: #1e293b;
+  border-bottom-color: #334155;
+}
+
+.dark.note-tip .icon {
+  color: #60a5fa;
+}
+
+.dark.note-tip .note-title {
+  color: #93c5fd;
+}
+
+.dark.note-warning .note-header {
+  background: #292524;
+  border-bottom-color: #44403c;
+}
+
+.dark.note-warning .icon {
+  color: #fbbf24;
+}
+
+.dark.note-warning .note-title {
+  color: #fde68a;
+}
+
+.dark.note-important .note-header {
+  background: #292524;
+  border-bottom-color: #44403c;
+}
+
+.dark.note-important .icon {
+  color: #f87171;
+}
+
+.dark.note-important .note-title {
+  color: #fca5a5;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .note-header {
+    padding: 0.5rem 0.75rem;
   }
 
-  .tag {
-    background: rgba(124, 58, 237, 0.1);
-    border-color: rgba(124, 58, 237, 0.2);
+  .icon {
+    font-size: 1rem;
+  }
+
+  .note-title {
+    font-size: 0.8rem;
   }
 
   .note-content {
-    color: #e5e7eb;
-    background: rgba(124, 58, 237, 0.05);
-  }
-
-  :deep(.note-content) {
-    .katex {
-      color: #e5e7eb;
-    }
+    padding: 1rem;
   }
 }
 </style>
