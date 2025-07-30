@@ -1306,5 +1306,358 @@ class: text-center
 🎓 Happy Teaching with TuoEdu Components! 
 拓课堂祝您教学愉快！
 
+---
+
+# Testing Slidev Highlight Features
+
+Let's test line highlighting and rough markers!
+
+---
+
+# Line Highlighting - Basic
+
+Highlight specific lines in code blocks:
+
+```ts {2,3}
+function add(
+  a: Ref<number> | number,  // This line is highlighted
+  b: Ref<number> | number   // This line is also highlighted
+) {
+  return computed(() => unref(a) + unref(b))
+}
+```
+
+---
+
+# Line Highlighting - Progressive
+
+Click to see progressive highlighting:
+
+```python {1-2|4|6-7|all}
+def fibonacci(n):
+    """Calculate fibonacci number"""
+    
+    if n <= 1:
+        return n
+    
+    return fibonacci(n-1) + fibonacci(n-2)
+```
+
+---
+
+# Line Highlighting - With Hide
+
+```js {hide|2-3|none|all}
+const data = {
+  name: 'John Doe',
+  age: 30,
+  email: 'john@example.com',
+  active: true
+}
+```
+
+---
+
+# Rough Markers - Basic
+
+This is <span v-mark>important text</span> with default underline.
+
+Here's text with <span v-mark.circle>circle marker</span>.
+
+---
+
+# Rough Markers - Colors
+
+<span v-mark.red>Red underline</span>
+
+<span v-mark.blue>Blue underline</span>
+
+<span v-mark.green>Green underline</span>
+
+<span v-mark="{ color: '#ff6b6b' }">Custom color underline</span>
+
+---
+
+# Rough Markers - Opacity Test
+
+## From Black to Transparent
+
+<span v-mark="{ color: '#000000' }">Black 100% opacity</span>
+
+<span v-mark="{ color: '#000000cc' }">Black 80% opacity</span>
+
+<span v-mark="{ color: '#00000099' }">Black 60% opacity</span>
+
+<span v-mark="{ color: '#00000066' }">Black 40% opacity</span>
+
+<span v-mark="{ color: '#00000033' }">Black 20% opacity</span>
+
+<span v-mark="{ color: '#0000001a' }">Black 10% opacity</span>
+
+---
+
+# Rough Markers - Gray Scale
+
+## Different Shades
+
+<span v-mark="{ color: '#000000' }">Pure Black (#000000)</span>
+
+<span v-mark="{ color: '#333333' }">Dark Gray (#333333)</span>
+
+<span v-mark="{ color: '#666666' }">Medium Gray (#666666)</span>
+
+<span v-mark="{ color: '#999999' }">Light Gray (#999999)</span>
+
+<span v-mark="{ color: '#cccccc' }">Lighter Gray (#cccccc)</span>
+
+<span v-mark="{ color: '#e5e5e5' }">Very Light Gray (#e5e5e5)</span>
+
+---
+
+# Rough Markers - RGBA Colors
+
+## Using RGBA for transparency
+
+<span v-mark="{ color: 'rgba(0, 0, 0, 1.0)' }">Black 100% (rgba)</span>
+
+<span v-mark="{ color: 'rgba(0, 0, 0, 0.7)' }">Black 70% (rgba)</span>
+
+<span v-mark="{ color: 'rgba(0, 0, 0, 0.5)' }">Black 50% (rgba)</span>
+
+<span v-mark="{ color: 'rgba(0, 0, 0, 0.3)' }">Black 30% (rgba)</span>
+
+<span v-mark="{ color: 'rgba(0, 0, 0, 0.15)' }">Black 15% (rgba)</span>
+
+---
+
+# Highlight Type with Different Colors
+
+## Testing highlight type with opacity
+
+<span v-mark="{ type: 'highlight', color: '#000000' }">Black highlight 100%</span>
+
+<span v-mark="{ type: 'highlight', color: '#00000080' }">Black highlight 50%</span>
+
+<span v-mark="{ type: 'highlight', color: '#00000040' }">Black highlight 25%</span>
+
+<span v-mark="{ type: 'highlight', color: '#00000020' }">Black highlight 12.5%</span>
+
+<span v-mark="{ type: 'highlight', color: 'rgba(0, 0, 0, 0.1)' }">Black highlight 10%</span>
+
+---
+
+# All Marker Types with Custom Colors
+
+## Different marker types with transparency
+
+<span v-mark="{ type: 'underline', color: 'rgba(0, 0, 0, 0.3)' }">Underline with 30% black</span>
+
+<span v-mark="{ type: 'circle', color: 'rgba(0, 0, 0, 0.3)' }">Circle with 30% black</span>
+
+<span v-mark="{ type: 'box', color: 'rgba(0, 0, 0, 0.3)' }">Box with 30% black</span>
+
+<span v-mark="{ type: 'bracket', color: 'rgba(0, 0, 0, 0.3)' }">Bracket with 30% black</span>
+
+<span v-mark="{ type: 'highlight', color: 'rgba(0, 0, 0, 0.3)' }">Highlight with 30% black</span>
+
+<span v-mark="{ type: 'strike-through', color: 'rgba(0, 0, 0, 0.3)' }">Strike-through with 30% black</span>
+
+<span v-mark="{ type: 'crossed-off', color: 'rgba(0, 0, 0, 0.3)' }">Crossed-off with 30% black</span>
+
+---
+
+# Highlight with Bright Colors
+
+## Vibrant highlight colors for emphasis
+
+<span v-mark="{ type: 'highlight', color: '#ffeb3b' }">Yellow highlight</span>
+
+<span v-mark="{ type: 'highlight', color: '#81c784' }">Green highlight</span>
+
+<span v-mark="{ type: 'highlight', color: '#64b5f6' }">Blue highlight</span>
+
+<span v-mark="{ type: 'highlight', color: '#ff8a65' }">Orange highlight</span>
+
+<span v-mark="{ type: 'highlight', color: '#f06292' }">Pink highlight</span>
+
+<span v-mark="{ type: 'highlight', color: '#ba68c8' }">Purple highlight</span>
+
+<span v-mark="{ type: 'highlight', color: '#4dd0e1' }">Cyan highlight</span>
+
+---
+
+# Highlight with Bright Colors + Transparency
+
+## Semi-transparent bright highlights
+
+<span v-mark="{ type: 'highlight', color: 'rgba(255, 235, 59, 0.4)' }">Yellow 40% opacity</span>
+
+<span v-mark="{ type: 'highlight', color: 'rgba(129, 199, 132, 0.4)' }">Green 40% opacity</span>
+
+<span v-mark="{ type: 'highlight', color: 'rgba(100, 181, 246, 0.4)' }">Blue 40% opacity</span>
+
+<span v-mark="{ type: 'highlight', color: 'rgba(255, 138, 101, 0.4)' }">Orange 40% opacity</span>
+
+<span v-mark="{ type: 'highlight', color: 'rgba(240, 98, 146, 0.4)' }">Pink 40% opacity</span>
+
+<span v-mark="{ type: 'highlight', color: 'rgba(186, 104, 200, 0.4)' }">Purple 40% opacity</span>
+
+<span v-mark="{ type: 'highlight', color: 'rgba(77, 208, 225, 0.4)' }">Cyan 40% opacity</span>
+
+---
+
+# Neon Highlights
+
+## Extra bright neon colors
+
+<span v-mark="{ type: 'highlight', color: '#ffff00' }">Neon Yellow</span>
+
+<span v-mark="{ type: 'highlight', color: '#00ff00' }">Neon Green</span>
+
+<span v-mark="{ type: 'highlight', color: '#00ffff' }">Neon Cyan</span>
+
+<span v-mark="{ type: 'highlight', color: '#ff00ff' }">Neon Magenta</span>
+
+<span v-mark="{ type: 'highlight', color: '#ff1493' }">Deep Pink</span>
+
+<span v-mark="{ type: 'highlight', color: '#ffa500' }">Bright Orange</span>
+
+<span v-mark="{ type: 'highlight', color: '#7fff00' }">Chartreuse</span>
+
+---
+
+# Rough Markers - Click Animation
+
+<span v-mark="1">First click shows this</span>
+
+<span v-mark="2">Second click shows this</span>
+
+<span v-mark="3" v-mark.circle.orange>Third click shows orange circle</span>
+
+<span v-mark="{ at: 4, color: '#234', type: 'circle' }">Fourth click custom circle</span>
+
+---
+
+# Combined Example
+
+## Math with Markers
+
+The quadratic formula is <span v-mark.red>$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$</span>
+
+## Code with Progressive Highlighting
+
+```python {1|3-4|6}
+def quadratic_formula(a, b, c):
+    # Calculate discriminant
+    discriminant = b**2 - 4*a*c
+    
+    # Calculate solutions
+    x1 = (-b + discriminant**0.5) / (2*a)
+    x2 = (-b - discriminant**0.5) / (2*a)
+    
+    return x1, x2
+```
+
+---
+
+# Advanced Rough Markers
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+### Types of Markers
+
+- <span v-mark.underline>Underline (default)</span>
+- <span v-mark.circle>Circle</span>
+- <span v-mark.box>Box</span>
+- <span v-mark.bracket>Bracket</span>
+- <span v-mark.highlight>Highlight</span>
+
+</div>
+<div>
+
+### Click Sequence
+
+<span v-mark="1">Step 1: Define the problem</span>
+
+<span v-mark="2">Step 2: Analyze requirements</span>
+
+<span v-mark="3">Step 3: Implement solution</span>
+
+<span v-mark="4">Step 4: Test and verify</span>
+
+</div>
+</div>
+
+---
+
+# More Line Highlighting Examples
+
+## JavaScript Example
+
+```javascript {1,5-6|2-4|all}
+class Calculator {
+  constructor(a, b) {
+    this.a = a;
+    this.b = b;
+  }
+  
+  add() {
+    return this.a + this.b;
+  }
+}
+```
+
+## CSS Example
+
+```css {1|3-5|7-9}
+.highlight-test {
+  /* Base styles */
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 4px;
+  
+  /* Colors */
+  background: #f0f0f0;
+  color: #333;
+}
+```
+
+---
+
+# Testing with Components
+
+<Definition title="Highlighted Definition">
+
+The <span v-mark.yellow>Pythagorean theorem</span> states that in a right triangle:
+
+$$a^2 + b^2 = c^2$$
+
+Where <span v-mark="1">$a$ and $b$ are the legs</span> and <span v-mark="2">$c$ is the hypotenuse</span>.
+
+</Definition>
+
+<Example>
+
+```python {2-3|5}
+def pythagorean(a, b):
+    # Calculate c using Pythagorean theorem
+    c_squared = a**2 + b**2
+    
+    return c_squared ** 0.5
+```
+
+</Example>
+
+---
+layout: center
+---
+
+# End of Test
+
+Both features work great! 🎉
+
+Click through the slides to see all animations.
+
 
 
