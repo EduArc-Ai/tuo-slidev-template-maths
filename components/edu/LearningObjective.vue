@@ -4,7 +4,7 @@
     <div class="learning-objective-header">
       <div class="header-left">
         <span class="icon">🎯</span>
-        <span class="title">Learning Objective</span>
+        <span class="title">Learning Objective {{ index }}</span>
       </div>
     </div>
 
@@ -16,7 +16,14 @@
 </template>
 
 <script setup lang="ts">
-// No additional props are needed since difficulty levels are removed
+// Accept index as a prop with default value
+interface Props {
+  index?: string | number
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  index: 1
+})
 </script>
 
 <style scoped>

@@ -6,9 +6,10 @@
         <span class="icon">🤔</span>
         <span class="title">{{ title || "Class Question" }}</span>
       </div>
-      <div class="header-tags" v-if="time || difficulty">
+      <div class="header-tags" v-if="time || difficulty || source">
         <span v-if="time" class="tag time-tag">{{ time }}</span>
         <span v-if="difficulty" class="tag" :class="`difficulty-${difficulty.toLowerCase()}`">{{ difficulty }}</span>
+        <span v-if="source" class="tag source-tag">{{ source }}</span>
       </div>
     </div>
 
@@ -37,6 +38,8 @@ interface ClassQuestionProps {
   time?: string;
   /** Difficulty level */
   difficulty?: "Easy" | "Medium" | "Hard" | string;
+  /** Source of the question (e.g., "Past Paper", "CIE 2023") */
+  source?: string;
   /** Show timer info */
   showTimer?: boolean;
   /** Show pause hint */
@@ -147,6 +150,12 @@ defineProps<ClassQuestionProps>();
   color: #d97706;
 }
 
+.tag.source-tag {
+  background: #dbeafe;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
 /* Difficulty-specific tag colors */
 .tag.difficulty-easy {
   border-color: #86efac;
@@ -169,7 +178,7 @@ defineProps<ClassQuestionProps>();
   color: #374151;
   line-height: 1.7;
   font-size: 1.1rem;
-  text-align: center;
+  text-align: left;
   background: linear-gradient(135deg, #fafafa 0%, #f8fafc 100%);
 }
 
@@ -271,6 +280,12 @@ defineProps<ClassQuestionProps>();
   background: #92400e;
   border-color: #d97706;
   color: #fde68a;
+}
+
+.dark .tag.source-tag {
+  background: #1e3a8a;
+  border-color: #3b82f6;
+  color: #93c5fd;
 }
 
 .dark .tag.difficulty-easy {
